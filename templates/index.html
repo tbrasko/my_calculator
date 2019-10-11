@@ -4,16 +4,19 @@
 <form method="post">
     <table>
         <tr>
-            <td> First Number: </td> <td> <input type="text" name="numOne" /> </td>
+            <td> Loan Amount: </td> <td> <input type="text" name="A" /> </td>
         </tr>
             
         <tr>
-            <td> Second Number: </td> <td> <input type="text" name="numTwo" /> </td>
+            <td> Number of periodic payments: </td> <td> <input type="text" name="n" /> </td>
+        </tr>
+        <tr>
+            <td> Periodic interest rate: </td> <td> <input type="text" name="i" /> </td>
         </tr>
 
     </table>
         <br>
-     <input class="button" type="submit" formaction="/add" value="Add them!" />
+     <input class="button" type="submit" formaction="/calculation" value="Loan Payment!" />
 </form>
 
 <p> {{display}} </p>

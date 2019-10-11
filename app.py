@@ -7,14 +7,17 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', display="", pageTitle='My Calculator')
 
-@app.route('/add', methods=['GET', 'POST'])
-def add():
+@app.route('/calculation', methods=['GET', 'POST'])
+def calculation():
     if request.method =='POST':
         form = request.form
-        numberOne = int(form['numOne'])
-        numberTwo = int(form['numTwo'])
-        calc = numberOne + numberTwo
-        return render_template('index.html', display=calc, pageTitle='My Calculator')
+        loanAmount = float(form['A']) 
+        periodicPayments = float(form['n']) * 12.0
+        interestRate = float(form['i']) / 100.0 / 12.0
+        discountFactor = (((1.0 + interestRate) ** periodicPayments)-1.0) / ( interestRate * ( 1.0 + interestRate) ** periodicPayments)
+        calc = loanAmount / discountFactor
+        answer = '${:,.2f}'.format(calc)
+        return render_template('index.html', display=answer, pageTitle='My Calculator')
     
     return redirect('/')
 
